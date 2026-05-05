@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Carat Years – Sparkling Soon</title>
+<meta name="description" content="Carat Years is sparkling soon. Stay tuned."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#b8922a;--gold-dim:rgba(184,146,42,.18);
+  --bg:#f9f7f4;--text:#2c2318;--muted:#9a8a74;
+}
+html,body{width:100%;height:100%;background:var(--bg);font-family:'Cormorant Garamond',Georgia,serif;color:var(--text);overflow:hidden}
+
+.page{display:grid;grid-template-columns:1fr 1fr;width:100vw;height:100vh}
+
+/* ══ LEFT — fully centered ══ */
+.left{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 52px 80px;position:relative;background:var(--bg);
+  opacity:0;animation:slideLeft .95s cubic-bezier(.22,1,.36,1) .1s forwards
+}
+.corner-tl,.corner-br{position:absolute;width:34px;height:34px;border-color:var(--gold-dim);border-style:solid}
+.corner-tl{top:32px;left:32px;border-width:1px 0 0 1px}
+.corner-br{bottom:32px;right:32px;border-width:0 1px 1px 0}
+
+.eyebrow{
+  font-size:10px;letter-spacing:.30em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:32px;font-weight:400;
+  opacity:0;animation:fadeUp .7s ease .7s forwards
+}
+.logo-row{
+  display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:48px;
+  opacity:0;animation:fadeUp .7s ease .85s forwards
+}
+.logo-row svg{width:44px;height:44px;flex-shrink:0}
+.brand-name{font-size:32px;font-weight:600;letter-spacing:.07em;line-height:1;text-align:left}
+.brand-tagline{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:5px;text-align:left}
+
+.headline{
+  font-size:clamp(46px,4.6vw,68px);font-style:italic;font-weight:300;
+  line-height:1.12;margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s ease 1.0s forwards
+}
+.headline em{color:var(--gold)}
+
+.rule{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto 26px;
+  animation:expandRule .9s ease 1.3s forwards
+}
+@keyframes expandRule{to{width:68px}}
+
+.body-copy{
+  font-size:17.5px;font-weight:300;line-height:1.82;color:var(--muted);
+  max-width:300px;margin-bottom:52px;
+  opacity:0;animation:fadeUp .7s ease 1.35s forwards
+}
+.body-copy strong{color:var(--gold);font-weight:400}
+
+.status-row{
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  opacity:0;animation:fadeUp .6s ease 1.65s forwards
+}
+.dot{
+  width:6px;height:6px;background:var(--gold);
+  transform:rotate(45deg) scale(0);
+  animation:popDot .5s cubic-bezier(.34,1.56,.64,1) forwards
+}
+.dot:nth-child(1){animation-delay:1.7s}
+.dot:nth-child(2){animation-delay:1.9s;opacity:.5}
+.dot:nth-child(3){animation-delay:2.1s;opacity:.28}
+.status-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+/* ══ RIGHT — image floats with space all around ══ */
+.right{
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 44px 40px 28px;
+  background:var(--bg);
+  opacity:0;animation:slideRight .95s cubic-bezier(.22,1,.36,1) .2s forwards
+}
+
+/* constrain to portrait 4:5 ratio — fills height, never overflows */
+.img-wrap{
+  position:relative;
+  height:100%;
+  aspect-ratio:4/5;
+  max-width:100%;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(44,35,24,.13),0 2px 12px rgba(44,35,24,.07);
+  transition:transform .65s cubic-bezier(.22,1,.36,1), box-shadow .65s cubic-bezier(.22,1,.36,1);
+}
+.img-wrap:hover{
+  transform:translateY(-8px) scale(1.015);
+  box-shadow:0 20px 60px rgba(44,35,24,.16),0 4px 18px rgba(44,35,24,.09);
+}
+
+.img-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  display:block;
+  transform:scale(1.05);
+  animation:imgSettle 1.5s cubic-bezier(.22,1,.36,1) .3s forwards;
+  transition:transform 9s ease;
+}
+.img-wrap:hover img{transform:scale(1.04)}
+
+@keyframes imgSettle{
+  from{transform:scale(1.05) translateY(8px);filter:brightness(.95)}
+  to{transform:scale(1) translateY(0);filter:brightness(1)}
+}
+
+/* ── Keyframes ── */
+@keyframes slideLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popDot{from{transform:rotate(45deg) scale(0)}to{transform:rotate(45deg) scale(1)}}
+
+/* ── Mobile — image first, then text ── */
+@media(max-width:900px){
+  html,body{overflow:auto}
+  .page{grid-template-columns:1fr;height:auto;min-height:100vh}
+  .right{order:1;padding:32px 28px 20px;height:auto}
+  .img-wrap{height:auto;width:85%;aspect-ratio:4/5;max-width:380px;margin:0 auto}
+  .left{order:2;padding:40px 36px 56px}
+  .headline{font-size:clamp(36px,8vw,54px)}
+}
+@media(max-width:500px){
+  .right{padding:24px 20px 16px}
+  .img-wrap{width:92%}
+  .left{padding:32px 24px 48px}
+  .brand-name{font-size:27px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <section class="left">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+
+    <p class="eyebrow">Exquisite Fine Jewellery</p>
+
+    <div class="logo-row">
+      <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 2L25.8 20.2L44 23L25.8 25.8L23 44L20.2 25.8L2 23L20.2 20.2Z" fill="#b8922a" opacity=".92"/>
+        <path d="M23 11L24.4 21.6L35 23L24.4 24.4L23 35L21.6 24.4L11 23L21.6 21.6Z" fill="#f9f7f4" opacity=".65"/>
+      </svg>
+      <div>
+        <div class="brand-name">CARAT YEARS</div>
+        <div class="brand-tagline">Crafted in Light</div>
+      </div>
+    </div>
+
+    <h1 class="headline">
+      Something<br/>
+      <em>brilliant</em><br/>
+      is coming.
+    </h1>
+
+    <div class="rule"></div>
+
+    <p class="body-copy">
+      We are putting the final touches on an experience as refined as our stones.
+      Visit us at <strong>caratyears.com</strong> — launching very soon.
+    </p>
+
+    <div class="status-row">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <span class="status-label">Sparkling Soon</span>
+    </div>
+  </section>
+
+  <div class="right">
+    <div class="img-wrap">
+      <img
+        src="https://res.cloudinary.com/dmfnuqo84/image/upload/v1777960073/Coming_Soon_wqewip.jpg"
+        alt="Carat Years diamonds – Sparkling Soon"
+        loading="eager"
+        fetchpriority="high"
+        draggable="false"
+      />
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
